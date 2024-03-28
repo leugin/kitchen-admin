@@ -3,13 +3,7 @@ import {  RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-  <div>
-    <h1 class="text-fuchsia-400	">Hola mundo</h1>
-  </div>
-  </header>
-
-
+<router-view/>
 </template>
 
 <style scoped>
