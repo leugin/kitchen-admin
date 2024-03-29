@@ -13,6 +13,6 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-primePlugin(app)
+app.use(primePlugin)
 
 app.mount('#app')

@@ -94,8 +94,9 @@ import TreeSelect from "primevue/treeselect";
 import TreeTable from "primevue/treetable";
 import TriStateCheckbox from "primevue/tristatecheckbox";
 import VirtualScroller from "primevue/virtualscroller";
-
-export default (app: any) => {
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+export const configure =  (app: any) => {
     app.use(PrimeVue, { ripple: false });
     app.use(ToastService);
     app.use(DialogService);
@@ -142,6 +143,8 @@ export default (app: any) => {
     app.component('FileUpload', FileUpload);
     app.component('Galleria', Galleria);
     app.component('Image', Image);
+    app.component('IconField', IconField);
+    app.component('InputIcon', InputIcon);
     app.component('InlineMessage', InlineMessage);
     app.component('Inplace', Inplace);
     app.component('InputMask', InputMask);
@@ -196,4 +199,10 @@ export default (app: any) => {
     app.component('TriStateCheckbox', TriStateCheckbox);
     app.component('VirtualScroller', VirtualScroller);
     return app
+}
+
+export default  {
+    install(app:any) {
+        configure(app)
+    }
 }
