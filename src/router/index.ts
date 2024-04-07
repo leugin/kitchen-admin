@@ -1,25 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import AuthenticateLayout from '../components/layout/AuthenticateLayout.vue'
 import ChekAuth from "@/middleware/ChekAuth";
 
+export enum RouterAlias {
+  KITCHEN = 'kitchen',
+  LOGIN = 'login'
+}
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      component: AuthenticateLayout,
       children: [
         {
           path:'/',
-          name:'dashboard',
+          name:RouterAlias.KITCHEN,
           component: () => import('../views/KitchenView.vue')
         }
       ]
     },
     {
       path: '/auth/login',
-      name: 'login',
+      name: RouterAlias.LOGIN,
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
