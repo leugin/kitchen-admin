@@ -9,7 +9,12 @@ const onChange = ()=> {
 </script>
 
 <template>
-  <Button   class="burger" severity="success" :class="{'is-active': props.modelValue}" @click="onChange">
+  <Button  class="burger"
+           severity="success"
+           :class="{'is-active': props.modelValue}"
+           @click="onChange"
+           outlined
+  >
     <span class="burger"></span>
     <span class="burger"></span>
     <span class="burger"></span>
