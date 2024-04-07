@@ -23,20 +23,36 @@ const appStore = appStorage()
       <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined/>
       <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined/>
     </Panel>
-    <main>
-    </main>
+   <router-view class="w-full "></router-view>
   </div>
 
 </template>
 <style>
 #sideMenu {
-  width: 250px;
+  width: 160px;
   height: calc(100vh - 100px);
 }
 #sideMenu .p-panel-header {
   border-radius:0;
+  border-top: none;
+  border-left:none;
+}
+#sideMenu .p-panel-header  span{
+ margin:auto;
 }
 #sideMenu .p-panel-content {
   padding:0;
+  border-left:none;
+  border-radius:0;
+  height: calc(100vh - 124px);
+  overflow: hidden;
 }
+#sideMenu .p-panel-content .p-button{
+  border-radius:0;
+}
+#sideMenu .p-panel-content .p-button:first-child{
+  margin-top:5px;
+}
+
+
 </style>

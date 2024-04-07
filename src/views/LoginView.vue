@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import userStorage from "@/stores/userStorage";
 
-const userStore = {
-  form:{
-    email: null,
-    password:null,
-    isLoading:false
 
+const userStore =  userStorage()
+const onSubmit = async  () => {
+   const response = await userStore.login()
+  if (response.data) {
+     userStore.setToken(response.data.access_token)
+    location.reload()
   }
-}
-const onSubmit = ()=> {}
+ }
 </script>
 
 <template>
@@ -24,6 +24,10 @@ const onSubmit = ()=> {}
            <div class="flex flex-col gap-2 mb-5">
              <label for="username">Email</label>
              <InputText id="username" type="email" placeholder="demo@demo.com" class="w-full md:w-30rem" v-model="userStore.form.email" />
+            <template v-if="userStore.errores.email.length > 0">
+              <small v-for="(err, index) in userStore.errores.email" :key="index"> {{err}} </small>
+            </template>
+
            </div>
            <div class="flex flex-col gap-2">
              <label for="password">Clave</label>
@@ -40,7 +44,10 @@ const onSubmit = ()=> {}
       </template>
       <template #footer>
         <div class=" grid grid-cols-1 gap-2">
-          <Button label="Login" outlined severity="success" size="small" />
+          <Button :label="'Login '" outlined severity="success" size="small"
+                  @click="onSubmit" :loading="userStore.isLoading"
+                  :disabled="userStore.isLoading"
+          />
         </div>
       </template>
     </Card>

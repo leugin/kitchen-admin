@@ -18,7 +18,7 @@ const onChange = ()=> {
 
 <style scoped>
 button.burger {
-  border-radius:50%;
+  border-radius:2px;
   width:45px;
   height:45px;
 }

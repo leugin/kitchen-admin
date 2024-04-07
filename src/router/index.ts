@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import ChekAuth from "@/middleware/ChekAuth";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -7,7 +8,14 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      children: [
+        {
+          path:'/',
+          name:'dashboard',
+          component: () => import('../views/KitchenView.vue')
+        }
+      ]
     },
     {
       path: '/auth/login',
@@ -19,5 +27,5 @@ const router = createRouter({
     }
   ]
 })
-
+router.beforeEach(ChekAuth)
 export default router

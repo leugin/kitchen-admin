@@ -60,9 +60,36 @@
 
 body {
   min-height: 100vh;
+
   color: var(--color-text);
   background: var(--color-background);
 }
 .p-icon-field > .p-input-icon {
   top: calc(50% - 5px)
+}
+.p-button, .p-component {
+  font-size:0.8rem;
+}
+.p-toolbar {
+  padding: .7rem;
+  border:none;
+    border-radius: 0;
+}
+.main-table {
+  margin: 10px;
+}
+.main-table .p-panel-header{
+  border:none;
+  border-radius:0;
+
+}
+.main-table  .p-panel-header{
+
+}
+.main-table .p-panel-content {
+  padding:0;
+  border:none;
+  border-radius:0;
+  height: calc(100vh - 144px);
+  overflow:hidden;
 }
