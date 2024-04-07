@@ -17,7 +17,7 @@ const appStore = appStorage()
     </template>
   </Toolbar>
   <div class="flex">
-    <Panel header="Menu" id="sideMenu">
+    <Panel header="Menu" id="sideMenu" :class="appStore.menuOpen ? 'is-open': '' ">
       <Button label="Cocina" icon="pi pi-home" class="border-0 w-full" outlined/>
       <Button label="Historico" icon="pi pi-database" class="border-0 w-full" outlined/>
       <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined/>
@@ -28,10 +28,26 @@ const appStore = appStorage()
 
 </template>
 <style>
-#sideMenu {
-  width: 160px;
+
+#sideMenu:not(.is-open) .p-button-label{
+  display:none;
+}
+#sideMenu:not(.is-open) {
   height: calc(100vh - 100px);
 }
+
+#sideMenu.is-open {
+  width:160px;
+}
+#sideMenu .p-panel-header {
+  padding: 1.5rem .5rem;
+}
+#sideMenu {
+  width:56px;
+  transition: 100ms;
+
+}
+
 #sideMenu .p-panel-header {
   border-radius:0;
   border-top: none;
@@ -44,7 +60,7 @@ const appStore = appStorage()
   padding:0;
   border-left:none;
   border-radius:0;
-  height: calc(100vh - 124px);
+  height: calc(100vh - 132px);
   overflow: hidden;
 }
 #sideMenu .p-panel-content .p-button{

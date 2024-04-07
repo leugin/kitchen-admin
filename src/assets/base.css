@@ -93,3 +93,14 @@ body {
   height: calc(100vh - 144px);
   overflow:hidden;
 }
+.p-paginator{
+  border:none;
+}
+.p-paginator .p-dropdown{
+  height: 2rem;
+
+}
+.p-paginator-element{
+  min-width: 2rem;
+  height: 2rem;
+}

@@ -3,8 +3,8 @@ import {onMounted, ref} from "vue";
 import kitchenStorage from "@/stores/kitchenStorage";
 import DateTransform from "../utils/DateTransform";
 
-const products = ref([]);
 const storage = kitchenStorage()
+
 
 onMounted(() => {
   storage.find();
@@ -13,12 +13,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <Panel id="kitchen" header="Kitchen" class="main-table">
+  <Panel id="kitchen"   class="main-table">
+    <template #header>
+      <div class="flex justify-between	 w-full">
+         <span class="font-bold">Cocina</span>
+        <div>
+          <InputText type="text" size="small"
+                     v-model="storage.filters.search.value"
+                     @keydown.enter="storage.find()"
+                     class="p-column-filter" placeholder="Search"
+          />
+          <Button icon="pi pi-search"
+                  severity="success"
+                  text
+                  aria-label="Search"
+                  class="my-auto"
+                  @click="storage.find()"
+          />
+
+        </div>
+      </div>
+    </template>
     <DataTable
         :lazy="true"
         :value="storage.data"
         tableStyle="min-width: 50rem"
-        scrollHeight="calc(100vh - 220px)"
+        scrollHeight="calc(100vh - 194px)"
         filterDisplay="row"
         :loading="storage.isLoading"
         :paginator="storage.data.length > 0"

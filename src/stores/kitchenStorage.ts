@@ -10,6 +10,7 @@ export default  defineStore('kitchenStorage',{
     ...pagination.state(),
     filters: {
       status:{value:null},
+      search:{value:null},
       label:{value:null},
       created:{value:null}
     }
