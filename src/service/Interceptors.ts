@@ -16,3 +16,14 @@ export const errorTransformer = (error:any) => {
     })
 }
 
+export const errorHandler = (e: any) => {
+    console.log(e)
+    if (e.code === 'ERR_NETWORK') {
+        return { success: false, message:'Fallo la conexión por favor vuelva a intentar' }
+    }
+    if (e.status === 401) {
+        localStorage.removeItem('token')
+        location.reload()
+    }
+    return { success: false, errors: e.data }
+}

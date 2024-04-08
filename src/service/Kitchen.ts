@@ -1,17 +1,7 @@
 import { Http } from '@/service/Http'
 import type { Response } from '@/interfaces/Response'
+import {errorHandler} from "@/service/Interceptors";
 
-const errorHandler = (e: any) => {
-  console.log(e)
-  if (e.code === 'ERR_NETWORK') {
-    return { success: false, message:'Fallo la conexión por favor vuelva a intentar' }
-  }
-  if (e.status === 401) {
-    localStorage.removeItem('token')
-    location.reload()
-  }
-  return { success: false, errors: e.data }
-}
 export class Kitchen {
   static async orders(params: {  } = {}): Promise<Response<any>> {
     try {

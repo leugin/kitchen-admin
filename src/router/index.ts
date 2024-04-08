@@ -5,6 +5,7 @@ import ChekAuth from "@/middleware/ChekAuth";
 export enum RouterAlias {
   KITCHEN = 'kitchen',
   HISTORICAL = 'historical',
+  WAREHOUSE  = 'warehouse',
   LOGIN = 'login'
 }
 const router = createRouter({
@@ -23,6 +24,11 @@ const router = createRouter({
           path:'/historical',
           name:RouterAlias.HISTORICAL,
           component: () => import('../views/HistoricalView.vue')
+        },
+        {
+          path:'/warehouse',
+          name:RouterAlias.WAREHOUSE,
+          component: () => import('../views/WarehouseView.vue')
         }
       ]
     },
