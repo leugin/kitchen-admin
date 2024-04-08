@@ -1,9 +1,27 @@
 <script setup lang="ts">
 import appStorage from '@/stores/app'
+import userStorage from '@/stores/userStorage'
 import BurgerMenu from "@/components/BurgerMenu.vue";
+import { useConfirm } from "primevue/useconfirm";
 
 const appStore = appStorage()
+const userStore = userStorage()
+const confirm = useConfirm();
 
+const logout = () => {
+  confirm.require({
+    message: 'Esta seguro de salir',
+    header: 'Confirmation',
+    icon: 'pi pi-exclamation-triangle',
+    rejectClass: 'p-button-secondary p-button-outlined',
+    rejectLabel: 'Cancel',
+    acceptLabel: 'Salir',
+    accept: async () => {
+      await userStore.logout()
+      location.reload()
+     }
+  });
+};
 </script>
 
 <template>
@@ -18,7 +36,7 @@ const appStore = appStorage()
   </Toolbar>
   <div class="flex">
     <Panel header="Menu" id="sideMenu" :class="appStore.menuOpen ? 'is-open': '' ">
-      <router-link to="/">
+      <router-link to="/" >
         <Button label="Cocina" icon="pi pi-home" class="border-0 w-full" outlined link  active-class="p-button-link-active"/>
       </router-link>
       <router-link to="/historical" >
@@ -27,10 +45,11 @@ const appStore = appStorage()
       <router-link to="/warehouse" >
         <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined link active-class="p-button-link-active"/>
       </router-link>
-      <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined link />
+      <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined link  @click="logout"/>
     </Panel>
     <router-view class="w-full "></router-view>
   </div>
+  <ConfirmDialog></ConfirmDialog>
 
 </template>
 <style>
