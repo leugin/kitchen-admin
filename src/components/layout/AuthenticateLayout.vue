@@ -22,12 +22,12 @@ const appStore = appStorage()
         <Button label="Cocina" icon="pi pi-home" class="border-0 w-full" outlined link  active-class="p-button-link-active"/>
       </router-link>
       <router-link to="/historical" >
-        <Button label="Historico" icon="pi pi-database" class="border-0 w-full" outlined link/>
+        <Button label="Historico" icon="pi pi-database" class="border-0 w-full" outlined link active-class="p-button-link-active"/>
       </router-link>
       <router-link to="/warehouse" >
-        <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined/>
+        <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined link active-class="p-button-link-active"/>
       </router-link>
-      <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined link/>
+      <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined link />
     </Panel>
     <router-view class="w-full "></router-view>
   </div>
