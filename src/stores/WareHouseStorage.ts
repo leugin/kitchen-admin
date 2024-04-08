@@ -3,7 +3,7 @@ import loader from "@/utils/loader";
 import pagination from "@/utils/pagination";
 import Paginator from "@/utils/Paginator";
 import {Warehouse} from "@/service/Warehouse";
-export default  defineStore('kitchenStorage',{
+export default  defineStore('WarehouseStorage',{
   state: () => ({
     ...loader.state(),
     ...pagination.state(),
