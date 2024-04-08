@@ -59,6 +59,7 @@ onMounted(() => {
           <InputText type="text" size="small" v-model="filterModel.value" @keydown.enter="filterCallback()" class="p-column-filter" placeholder="Search"/>
         </template>
       </Column>
+      <Column field="status" header="Estado" style="width: 10%" :sortable="true"/>
 
       <Column field="created" header="created" :showFilterMenu="false">
         <template #body="slotProps">
