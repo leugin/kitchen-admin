@@ -4,6 +4,7 @@ import ChekAuth from "@/middleware/ChekAuth";
 
 export enum RouterAlias {
   KITCHEN = 'kitchen',
+  HISTORICAL = 'historical',
   LOGIN = 'login'
 }
 const router = createRouter({
@@ -17,6 +18,11 @@ const router = createRouter({
           path:'/',
           name:RouterAlias.KITCHEN,
           component: () => import('../views/KitchenView.vue')
+        },
+        {
+          path:'/historical',
+          name:RouterAlias.HISTORICAL,
+          component: () => import('../views/HistoricalView.vue')
         }
       ]
     },

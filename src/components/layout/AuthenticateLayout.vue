@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import appStorage from '@/stores/app'
 import BurgerMenu from "@/components/BurgerMenu.vue";
+import {RouterAlias} from "@/router";
 
 const appStore = appStorage()
 
@@ -21,7 +22,9 @@ const appStore = appStorage()
       <router-link to="/">
         <Button label="Cocina" icon="pi pi-home" class="border-0 w-full" outlined link  active-class="p-button-link-active"/>
       </router-link>
+      <router-link to="/historical" >
       <Button label="Historico" icon="pi pi-database" class="border-0 w-full" outlined link/>
+      </router-link>
       <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined/>
       <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined link/>
     </Panel>
