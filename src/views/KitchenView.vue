@@ -2,12 +2,31 @@
 import {onMounted} from "vue";
 import kitchenStorage from "@/stores/kitchenStorage";
 import DateTransform from "../utils/DateTransform";
+import { inject } from 'vue'
+import Pusher from "pusher-js";
+import {useToast} from "primevue/usetoast";
 
 const storage = kitchenStorage()
+const pusher = inject<Pusher>('pusher')
+const toast = useToast();
 
 
-onMounted(() => {
-  storage.find();
+onMounted(async () => {
+  await storage.find()
+  pusher?.subscribe('orders')
+      .bind('order-finished', (data:{order:{id:number, status:'finished'}} )=> {
+        toast.add({
+          severity: 'success',
+          summary: `Order terminada `,
+          detail:  `Numero: ${data.order.id}` ,
+          life: 3000
+        });
+         const index = storage.data.findIndex(value => value.id === data.order.id)
+        if (index !== -1) {
+          storage.data[index].status = data.order.status
+        }
+      })
+
 })
 
 </script>
@@ -61,7 +80,7 @@ onMounted(() => {
       </Column>
       <Column field="status" header="Estado" style="width: 10%" :sortable="true"/>
 
-      <Column field="created" header="created" :showFilterMenu="false">
+      <Column field="created" header="created" :showFilterMenu="false" :sortable="true">
         <template #body="slotProps">
           {{ DateTransform.formatInputDate(slotProps.data.created)   }}
         </template>

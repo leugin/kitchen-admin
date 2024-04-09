@@ -96,6 +96,8 @@ import TriStateCheckbox from "primevue/tristatecheckbox";
 import VirtualScroller from "primevue/virtualscroller";
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
+import InputGroup from 'primevue/inputgroup';
+import InputGroupAddon from 'primevue/inputgroupaddon';
 export const configure =  (app: any) => {
     app.use(PrimeVue, { ripple: false });
     app.use(ToastService);
@@ -147,6 +149,8 @@ export const configure =  (app: any) => {
     app.component('InputIcon', InputIcon);
     app.component('InlineMessage', InlineMessage);
     app.component('Inplace', Inplace);
+    app.component('InputGroup', InputGroup);
+    app.component('InputGroupAddon', InputGroupAddon);
     app.component('InputMask', InputMask);
     app.component('InputNumber', InputNumber);
     app.component('InputSwitch', InputSwitch);
@@ -198,6 +202,7 @@ export const configure =  (app: any) => {
     app.component('TreeTable', TreeTable);
     app.component('TriStateCheckbox', TriStateCheckbox);
     app.component('VirtualScroller', VirtualScroller);
+
     return app
 }
 

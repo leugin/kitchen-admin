@@ -27,7 +27,7 @@ export default  defineStore('kitchenStorage',{
         ...this.pagination,
         ...Paginator.forRequest({...this.filters})
       }
-      const response  = await Kitchen.orders(query);
+      const response  = await Kitchen.paginate(query);
       if (response.data) {
         this.data = response.data.data.map((val:any ) => {
           val.created = new Date(val.created);
@@ -41,8 +41,24 @@ export default  defineStore('kitchenStorage',{
     },
     async onFilter(event: any) {
       Object.assign(this.filters, event.filters)
+
       this.pagination.page = 1
       await this.find();
+    },
+    async onSort(event: any) {
+      this.pagination.order_by = event.sortField
+      this.pagination.order_direction = event.sortOrder === -1?'desc':'asc'
+      if (this.pagination.order_by === 'created') {
+        this.pagination.order_by = 'created_at'
+      }
+      await  this.find()
+    },
+    async create(quantity: number) {
+      this.increments()
+      const response = await Kitchen.create(quantity)
+      this.find();
+      this.decrement()
+      return response;
     }
   }
 })

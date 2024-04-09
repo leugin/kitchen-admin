@@ -3,6 +3,7 @@ import appStorage from '@/stores/app'
 import userStorage from '@/stores/userStorage'
 import BurgerMenu from "@/components/BurgerMenu.vue";
 import { useConfirm } from "primevue/useconfirm";
+import CreateOrders from "@/components/CreateOrders.vue";
 
 const appStore = appStorage()
 const userStore = userStorage()
@@ -19,7 +20,7 @@ const logout = () => {
     accept: async () => {
       await userStore.logout()
       location.reload()
-     }
+    }
   });
 };
 </script>
@@ -31,7 +32,7 @@ const logout = () => {
     </template>
 
     <template #end>
-      <Button icon="pi pi-plus" class="mr-2" severity="success" rounded raised />
+      <CreateOrders />
     </template>
   </Toolbar>
   <div class="flex">
