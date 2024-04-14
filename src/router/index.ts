@@ -6,6 +6,7 @@ export enum RouterAlias {
   KITCHEN = 'kitchen',
   HISTORICAL = 'historical',
   WAREHOUSE  = 'warehouse',
+  RECIPE  = 'recipes',
   LOGIN = 'login'
 }
 const router = createRouter({
@@ -32,7 +33,7 @@ const router = createRouter({
         },
         {
           path:'/recipes',
-          name:RouterAlias.WAREHOUSE,
+          name:RouterAlias.RECIPE,
           component: () => import('../views/RecipeView.vue')
         }
       ]

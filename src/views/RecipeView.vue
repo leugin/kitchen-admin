@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import {onMounted} from "vue";
-import WareHouseStorage from "@/stores/WareHouseStorage";
-import DateTransform from "../utils/DateTransform";
+import {onMounted, ref} from "vue";
+import RecipeStorage from "@/stores/RecipeStorage";
+const expandedRows = ref([]);
 
-const storage = WareHouseStorage()
-
+const storage = RecipeStorage()
 
 onMounted(() => {
   storage.find();
@@ -45,35 +44,38 @@ onMounted(() => {
         :rows="storage.paginate.per_page"
         :rowsPerPageOptions="[5, 10, 20, 50]"
         :totalRecords="storage.paginate.total"
+        :expanded-rows="expandedRows"
         v-model:filters="storage.filters"
         @page="storage.onPage"
         @sort="storage.onSort"
         @filter="storage.onFilter"
-
-
     >
       <template #empty> Sin resultados</template>
+      <Column expander style="width: 5rem" />
       <Column field="id" header="id" style="width: 10%" :sortable="true"/>
       <Column field="label" header="Recipe" :show-filter-menu="false">
         <template #filter="{filterModel,filterCallback}" >
           <InputText type="text" size="small" v-model="filterModel.value" @keydown.enter="filterCallback()" class="p-column-filter" placeholder="Search"/>
         </template>
       </Column>
-      <Column field="stock" header="stock" style="width: 10%" :sortable="true"/>
-
-      <Column field="updated" header="updated" :showFilterMenu="false">
+      <Column field="ingredients" header="ingredients"  :sortable="true">
         <template #body="slotProps">
-          {{ DateTransform.formatInputDate(slotProps.data.updated)   }}
-        </template>
-        <template #filter="{filterModel,filterCallback}" >
-          <Calendar v-model="filterModel.value"
-                    selectionMode="range" :manualInput="false"
-                    size="small"
-                    @hide="filterCallback"
-          />
-
+          <p>
+            {{slotProps.data.ingredients.map((val:any) => val.label).join(', ')}}
+          </p>
         </template>
       </Column>
+      <template #expansion="slotProps">
+        <div class="p-3">
+          <h5>Orders for {{ slotProps.data.label }}</h5>
+          <DataTable :value="slotProps.data.ingredients">
+            <Column field="id" header="Id"></Column>
+            <Column field="label" header="Nombre"></Column>
+            <Column field="quantity" header="Cantidad"></Column>
+          </DataTable>
+        </div>
+      </template>
+
     </DataTable>
 
   </Panel>
