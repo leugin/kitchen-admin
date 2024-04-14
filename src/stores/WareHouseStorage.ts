@@ -11,7 +11,7 @@ export default  defineStore('WarehouseStorage',{
       status:{value:null},
       search:{value:null},
       label:{value:null},
-      updated:{value:null}
+      updated:{value:null},
     }
   }),
   getters:{
@@ -21,6 +21,7 @@ export default  defineStore('WarehouseStorage',{
     ...loader.actions,
     ...pagination.actions,
     async find(params = {}) {
+      this.pagination.order_by =  this.pagination.order_by == 'id' ? 'ingredient_id': this.pagination.order_by;
       this.increments()
       const query = {
         ...params,

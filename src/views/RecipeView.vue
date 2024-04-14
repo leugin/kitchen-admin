@@ -16,7 +16,7 @@ onMounted(() => {
   <Panel id="warehouse"   class="main-table">
     <template #header>
       <div class="flex justify-between	 w-full">
-         <span class="font-bold">Almacen</span>
+         <span class="font-bold">Recetas</span>
         <div>
           <InputText type="text" size="small"
                      v-model="storage.filters.search.value"

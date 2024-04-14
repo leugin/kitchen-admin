@@ -29,6 +29,11 @@ const router = createRouter({
           path:'/warehouse',
           name:RouterAlias.WAREHOUSE,
           component: () => import('../views/WarehouseView.vue')
+        },
+        {
+          path:'/recipes',
+          name:RouterAlias.WAREHOUSE,
+          component: () => import('../views/RecipeView.vue')
         }
       ]
     },

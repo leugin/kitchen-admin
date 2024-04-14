@@ -46,6 +46,9 @@ const logout = () => {
       <router-link to="/warehouse" >
         <Button label="Almacen" icon="pi pi-car" class="border-0 w-full" outlined link active-class="p-button-link-active"/>
       </router-link>
+      <router-link to="/recipes" >
+        <Button label="Recetas" icon="pi pi-book" class="border-0 w-full" outlined link active-class="p-button-link-active"/>
+      </router-link>
       <Button label="Salir" icon="pi pi-power-off" class="border-0 w-full" outlined link  @click="logout"/>
     </Panel>
     <router-view class="w-full "></router-view>
