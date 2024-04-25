@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import {onMounted} from "vue";
+import {inject, onMounted} from "vue";
 import WareHouseStorage from "@/stores/WareHouseStorage";
 import DateTransform from "../utils/DateTransform";
+import Pusher from "pusher-js";
+const pusher = inject<Pusher>('pusher')
 
 const storage = WareHouseStorage()
 
 
 onMounted(() => {
   storage.find();
+  pusher?.subscribe('orders')
+      .bind('order-finished', ( )=> {
+        storage.find()
+      })
 })
 
 </script>
