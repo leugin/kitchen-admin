@@ -17,7 +17,6 @@ export const errorTransformer = (error:any) => {
 }
 
 export const errorHandler = (e: any) => {
-    console.log(e)
     if (e.code === 'ERR_NETWORK') {
         return { success: false, message:'Fallo la conexión por favor vuelva a intentar' }
     }
@@ -25,5 +24,5 @@ export const errorHandler = (e: any) => {
         localStorage.removeItem('token')
         location.reload()
     }
-    return { success: false, errors: e.data }
+    return { success: false, errors: e.data ?? {}, code:e.code }
 }

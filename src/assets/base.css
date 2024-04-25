@@ -111,3 +111,15 @@ body {
 span.p-dropdown-label.p-inputtext {
   padding: .5rem;
 }
+.p-toast-message-text{
+  margin:auto;
+  padding: .5rem;
+}
+.p-toast-message-content {
+  word-wrap: break-word;
+  white-space: break-spaces;
+}
+.p-toast-message-content .p-toast-summary {
+  word-wrap: break-word;
+  white-space: break-spaces;
+}

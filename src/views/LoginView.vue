@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import userStorage from "@/stores/userStorage";
+import {useToast} from "primevue/usetoast";
+import {data} from "autoprefixer";
+const toast = useToast();
 
 
 const userStore =  userStorage()
@@ -8,6 +11,12 @@ const onSubmit = async  () => {
   if (response.data) {
      userStore.setToken(response.data.access_token)
     location.reload()
+  }else if (response.message) {
+    toast.add({
+      severity: 'error',
+      summary: response.message,
+      life: 100000
+    });
   }
  }
 </script>

@@ -31,22 +31,21 @@ export default  defineStore('userStorage',{
             this.increments()
             this.clearErrors()
             const response = await OAuth.login(this.form)
-            if (!response.success) {
-                console.log(response.errors)
+            if (!response.success && response.errors?.errors) {
                this.errores =  response.errors.errors
             }
             this.decrement()
             return response
         },
         async me() {
-            const response = await Http.get<Response<any>>('/oauth/api/me')
+            const response = await OAuth.me()
             if (response.success) {
                 this.user = response.data
             }
             return response
         },
         async logout() {
-            await Http.post('/oauth/api/logout');
+            await OAuth.logout();
             this.removeToken();
         },
         setToken(token:string) {
